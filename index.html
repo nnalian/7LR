@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жарти з AJAX</title>
+    <script>
+        function loadJoke() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Вибір випадкового жарту
+                    var jokes = this.responseText.split("\n");
+                    var randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+                    document.getElementById("joke").innerHTML = randomJoke;
+                }
+            };
+            xhttp.open("GET", "jokes.txt", true);
+            xhttp.send();
+        }
+    </script>
+</head>
+<body>
+    <h1>IT- ЖАРТИ</h1>
+    <button onclick="loadJoke()">Показати жарт</button>
+    <p id="joke"></p>
+</body>
+</html>
+
+
